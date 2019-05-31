@@ -66,9 +66,13 @@ Node* BT::buildBT(const string& fileName)
       
 }
 
-void BT::execute(int, Node* rootNode)
+void BT::execute(Node* rootNode, int ticks_in_millisecond)
 {
-    //still left to implement
+    /*while (true)
+    {
+        root->tick()
+    }*/
+    
 }
 
 

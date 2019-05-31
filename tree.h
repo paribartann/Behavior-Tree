@@ -8,7 +8,7 @@ namespace parse
         public:
             BT();   //constructor
             tree::Node* buildBT(const std::string&);
-            void execute(int, tree::Node*);
+            void execute(tree::Node*, int);
 
             //utility functions
             std::string getBehavior(int);
