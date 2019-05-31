@@ -1,0 +1,17 @@
+OR 3
+- AND 4
+-- t 0
+-- ANDM 2
+--- GC 0
+--- DC 0
+-- ANDM 0
+-- GD 3
+--- GCA 0
+--- DCB 0
+--- DCC 2
+---- tps 0
+---- GAQ 0
+- AND 2
+-- tp 0
+-- GA 0
+- GB 0
