@@ -5,12 +5,13 @@
 #include <unistd.h>
 
 #include <string>
+#include <vector>
 
 namespace BTree
 {
     enum NodeType{ACTION_NODE, CONDITION_NODE, CONTROL_NODE};
     enum Nodes{SELECTOR, SEQUENCE, SELECTORSTAR, SEQUENCESTAR, ACTION, CONDITION};
-    enum ReturnStatus{RUNNING, SUCCESS, FAILURE};
+    enum ReturnStatus{RUNNING, SUCCESS, FAILURE, IDLE, HALTED, EXIT};
 
 
     class BTreeNode
@@ -18,6 +19,8 @@ namespace BTree
         private:
             std::string name_;
             bool has_parent_;
+
+             
 
         public:
             ReturnStatus status_;
@@ -43,6 +46,19 @@ namespace BTree
             NodeType get_type();
             bool has_parent();
             void set_has_parent(bool value);
+
+
+            //made public for the base classes
+            // Children vector
+            std::vector<BTreeNode*> children_nodes_;
+
+            // Children states
+            std::vector<ReturnStatus> children_states_;
+
+            // Vector size
+            unsigned int N_of_children_;
+            // child i status. Used to rout the ticks
+            ReturnStatus child_i_status_;
 
     };
 }
