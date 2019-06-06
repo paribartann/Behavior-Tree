@@ -1,17 +1,15 @@
-#include "selectorstar.h"
+#include "sequencestar.h"
 #include <iostream>
 #include <string>
 
 
-
-
-tree::SelectorStarNode::SelectorStarNode()
+tree::SequenceStarNode::SequenceStarNode()
 {
     current_child_index_ = 0;
 }
 
 
-tree::ReturnStatus tree::SelectorStarNode::Tick()
+tree::ReturnStatus tree::SequenceStarNode::Tick()
 {
     
     //std::cout<<root->child.size()<<std::endl;
@@ -38,7 +36,7 @@ tree::ReturnStatus tree::SelectorStarNode::Tick()
         else
         {
             //this will take care of condition nodes and control nodes
-
+            
             child_i_status_ = children_node[current_child_index_]->Tick();
 
             //this can be any other control nodes such as ANDM, ORM, OR, AND
@@ -46,15 +44,16 @@ tree::ReturnStatus tree::SelectorStarNode::Tick()
         }
             
         
+
         if (child_i_status_ == tree::FAILURE ||  child_i_status_ == tree::SUCCESS)
         {
             // the child goes in idle if it has returned success or failure.
             children_node[current_child_index_]->set_status(tree::IDLE);
         }
 
-        if (child_i_status_ != tree::FAILURE)
+        if (child_i_status_ != tree::SUCCESS)
         {
-            if(child_i_status_ == tree::SUCCESS)
+            if(child_i_status_ == tree::FAILURE)
             {
                 current_child_index_ = 0;
             }
@@ -68,13 +67,13 @@ tree::ReturnStatus tree::SelectorStarNode::Tick()
         {
             current_child_index_++;
         }
-            //if the child returned failure
+            //if the child returned success
         else
         {
             //if it is the last child
-            if (child_i_status_ == tree::FAILURE)
+            if (child_i_status_ == tree::SUCCESS)
             {
-                // if it the last child and it has returned failure, reset the memory
+                // if it the last child and it has returned success, reset the memory
                 current_child_index_ = 0;
             }
             set_status(child_i_status_);

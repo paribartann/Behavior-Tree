@@ -14,13 +14,13 @@ int main()
 
    // cout<<root->key<<endl;
     //cout<<root->child.size()<<endl;
-    cout<<root->child[2]->type<<"\n";
+    cout<<root->child[2]->get_type()<<"\n";
     // cout<<root->child[1]->child.size()<<"\n";
     // cout<<root->child[2]->child.size()<<"\n";
     // cout<<root->child[0]->child[0]->child.size()<<"\n";
     // cout<<root->child[0]->child[1]->child.size()<<"\n";
     
-    st.Tick(root);
+    st.Tick();
     //cout<<root->tick()<<endl;
 
     return 0;
