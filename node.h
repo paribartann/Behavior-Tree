@@ -27,10 +27,8 @@ namespace tree{
             ReturnStatus get_status() { return status_;}
             void set_status(ReturnStatus _status) {status_ = _status; }
 
+            //virtual ReturnStatus Tick() = 0;
             ReturnStatus Tick();
-            
-            
-
     }; 
 
     Node* newNode(std::string key); 
