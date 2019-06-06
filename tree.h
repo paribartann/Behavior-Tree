@@ -7,7 +7,7 @@ namespace tree
     // enum NodeType{SELECTOR, SEQUENCE, SELECTORSTAR, SEQUENCESTAR, ACTION, CONDITION};
     // enum ReturnStatus{RUNNING, SUCCESS, FAILURE};
     
-    class BT {
+    class BT : public Node{
         public:
             BT();   //constructor
             Node* buildBT(const std::string&);

@@ -38,12 +38,11 @@ tree::ReturnStatus tree::SelectorNode::Tick()
             if(child_i_status_ == tree::SUCCESS)
             {
                 children_node[i]->set_status(tree::IDLE); //after success, set it to normal or not used
-
                 // If the  child status is not failure, halt the next children and return the status to your parent.
                 //I think we need to add this logic
-
-                return child_i_status_; 
             }
+            //this takes care of runnning also
+            return child_i_status_; 
         }
         else
         {
@@ -55,14 +54,8 @@ tree::ReturnStatus tree::SelectorNode::Tick()
                 //set_status(BT::FAILURE);
                 return tree::FAILURE;
             }
-        }
-        
+        }        
     }
 
 
-
-    //child_i_status_ = SUCCESS;
-    //std::cout<<child_i_status_<<std::endl;
-
-    //return child_i_status_;
 }
