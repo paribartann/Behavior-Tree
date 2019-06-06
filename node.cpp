@@ -8,15 +8,51 @@ using namespace std;
 namespace tree
 {
      // Utility function to create a new tree node 
-    Node *newNode(string key) 
+
+
+    // ReturnStatus Node::Tick()
+    // {
+    //     return SUCCESS;
+    // } 
+
+
+    Node* newNode(string key) 
     { 
         Node *temp = new Node; 
+        //temp = new Node;
         temp->key = key; 
+        
+            if (key == "AND")
+            {
+                temp->type = "SEQUENCE";
+            }
+            else if (key == "ANDM")
+            {
+                temp->type = "SEQUENCESTAR";
+            }
+            else if (key == "ORM")
+            {
+                temp->type = "SELECTORSTAR";
+            }
+            else if (key == "OR")
+            {
+                temp->type = "SELECTOR";
+            }
+            else if (key == "t" || key == "tp")
+            {
+                temp->type = "CONDITION";
+            }
+            else
+            {
+                temp->type = "ACTION";
+            }
+        
         return temp; 
     } 
     
+  
     // Prints the n-ary tree level wise 
-    void LevelOrderTraversal(Node * root) 
+    void LevelOrderTraversal(Node* root) 
     { 
         if (root==NULL) 
             return; 

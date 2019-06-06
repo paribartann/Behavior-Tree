@@ -1,14 +1,27 @@
 #include <iostream>
-#include "tree.h"
+//#include "tree.h"
+#include "selector.h"
 
-using namespace parse;
 
+using namespace std;
 
 int main()
 {
-    BT bt;
-    bt.buildBT("BT_Fig8");
+    tree::BT bt;
 
+    tree::SelectorNode st; 
+    tree::Node* root= bt.buildBT("BT_Fig8");
+
+   // cout<<root->key<<endl;
+    //cout<<root->child.size()<<endl;
+    cout<<root->child[2]->type<<"\n";
+    // cout<<root->child[1]->child.size()<<"\n";
+    // cout<<root->child[2]->child.size()<<"\n";
+    // cout<<root->child[0]->child[0]->child.size()<<"\n";
+    // cout<<root->child[0]->child[1]->child.size()<<"\n";
+    
+    st.Tick(root);
+    //cout<<root->tick()<<endl;
 
     return 0;
 }

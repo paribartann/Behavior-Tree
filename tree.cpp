@@ -8,16 +8,17 @@
 #include <sstream>
 #include <string>
 
+
 using namespace std;
-using namespace parse;
-using namespace tree;
 
 
-BT::BT(){
-    tickPeriod = 10000;
+int end_count = 0;
+
+tree::BT::BT(){
+    
 }
 
-Node* BT::buildBT(const string& fileName)
+tree::Node* tree::BT::buildBT(const string& fileName)
 {
     ifstream infile;
     infile.open(fileName);
@@ -54,8 +55,15 @@ Node* BT::buildBT(const string& fileName)
     int numberOfChildren_root = 0;
     
     rootValue = splittedBySpace[0][0];          //this will always be a root node according to our file
+    // stringstream input(splittedBySpace[0][1]);
+    // int x = 0;
+    // input >> x;
+    //cout<<x<<endl;
+    //Node *nd;
+
     Node *root = newNode(rootValue);            //adding the above to the root of tree
 
+    
     //building a tree (starting from 1 below the root)
     buildTree(1, splittedBySpace.size(), root, 1);
     
@@ -66,7 +74,7 @@ Node* BT::buildBT(const string& fileName)
       
 }
 
-void BT::execute(Node* rootNode, int ticks_in_millisecond)
+void tree::BT::execute(Node* rootNode, int ticks_in_millisecond)
 {
     /*while (true)
     {
@@ -75,15 +83,42 @@ void BT::execute(Node* rootNode, int ticks_in_millisecond)
     
 }
 
+// int BT::number_of_children(Node* root)
+// {
+//     return root->child.size
+// }
 
 //returns the control flow nodes or condition or action associated with the line number
-string BT::getBehavior(int depthIndex)
+string tree::BT::getBehavior(int depthIndex)
 {
     return splittedBySpace[depthIndex][1];
 }
 
+string tree::BT::getType(string s)
+{
+    string return_type = "";
+    if (s == "AND")
+    {
+        return_type = "SEQUENCE";
+    }
+    else if (s == "ANDM")
+    {
+        return_type = "SEQUENCESTAR";
+    }
+    else if (s == "ORM")
+    {
+        return_type = "SELECTORSTAR";
+    }
+    else if (s == "OR")
+    {
+        return_type = "SELECTOR";
+    }
+
+    return return_type;
+}
+
 //returns the number of children any behavior has
-int BT::getNumberOfChildren(int depthIndex)
+int tree::BT::getNumberOfChildren(int depthIndex)
 {
     string val = "";
     if (depthIndex == 0)
@@ -98,17 +133,19 @@ int BT::getNumberOfChildren(int depthIndex)
 }
 
 //returns the depth at where the control flow nodes or condition or action should be
-int BT::getDepth(int depthIndex)
+int tree::BT::getDepth(int depthIndex)
 {
     return (splittedBySpace[depthIndex][0]).length();
 }
 
 
+
 //this is a recursive function which takes the starting rootLine , last node of the tree, root of tree or subtree, and it's depth 
-void BT::buildTree(int rootStart, int rootEnd, Node* root, int depth)
+void tree::BT::buildTree(int rootStart, int rootEnd, Node* root, int depth)
 {
+   // Node * nd;
     int ithChild = -1;                          //denotes the child of each level (such as index [0] )
-    int count = -1;                             //i am which number child of my parent 
+    int count = -1;                             //i am which number child of my parent
     for (int i = rootStart; i < rootEnd; i++)
     {
         count = count + 1;              //
@@ -120,14 +157,17 @@ void BT::buildTree(int rootStart, int rootEnd, Node* root, int depth)
         if (find(alreadyParsed.begin(), alreadyParsed.end(), rootStart+count) != alreadyParsed.end()) //checking if the following line has already been
             continue;                                                           //parsed, if so continue
 
-        (root->child).push_back(newNode( getBehavior(i) ));           //root will vary as per the recursive function
+        //cout<<getNumberOfChildren(i)<<endl;
+        (root->child).push_back(newNode( getBehavior(rootStart+count)));           //root will vary as per the recursive function
         alreadyParsed.push_back( rootStart + count);                //put the index of the used behavior in alreadyParsed vector 
         ithChild++;                                                 //denotes the child number of any parents
         int num_of_children = getNumberOfChildren(i);   
+   
         if (num_of_children > 0)
         {
-            buildTree(rootStart+count+1, splittedBySpace.size(), root->child[ithChild], depth+1);
-        }  
+            //buildTree(rootStart+count+1, splittedBySpace.size(), root->child[ithChild], depth+1);
+            buildTree(rootStart+count+1, rootStart+count+1+num_of_children, root->child[ithChild], depth+1);
+        }      
     }
 }
 
