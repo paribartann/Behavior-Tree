@@ -17,7 +17,7 @@ namespace tree
             //int number_of_children(Node*);
             //utility functions
             std::string getBehavior(int);
-            std::string getType(std::string);
+           
             int getNumberOfChildren(int);
             int getDepth(int);
 
