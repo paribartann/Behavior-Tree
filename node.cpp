@@ -10,11 +10,14 @@ namespace tree
      // Utility function to create a new tree node 
 
 
-    // ReturnStatus Node::Tick()
-    // {
-    //     return SUCCESS;
-    // } 
+    ReturnStatus Node::Tick()
+    {
+        return SUCCESS;
+    } 
 
+    Node::Node(){
+        status_ = IDLE;
+    }
 
     Node* newNode(string key) 
     { 
@@ -24,27 +27,27 @@ namespace tree
         
             if (key == "AND")
             {
-                temp->type = "SEQUENCE";
+                temp->set_type(SEQUENCE);
             }
             else if (key == "ANDM")
             {
-                temp->type = "SEQUENCESTAR";
+                temp->set_type(SEQUENCESTAR);
             }
             else if (key == "ORM")
             {
-                temp->type = "SELECTORSTAR";
+                temp->set_type(SELECTORSTAR);
             }
             else if (key == "OR")
             {
-                temp->type = "SELECTOR";
+                temp->set_type(SELECTOR);
             }
             else if (key == "t" || key == "tp")
             {
-                temp->type = "CONDITION";
+                temp->set_type(CONDITION);
             }
             else
             {
-                temp->type = "ACTION";
+                temp->set_type(ACTION);
             }
         
         return temp; 

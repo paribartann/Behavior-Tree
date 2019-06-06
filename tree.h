@@ -4,8 +4,8 @@
 
 namespace tree
 {
-    enum NodeType{SELECTOR, SEQUENCE, SELECTORSTAR, SEQUENCESTAR, ACTION, CONDITION};
-    enum ReturnStatus{RUNNING, SUCCESS, FAILURE};
+    // enum NodeType{SELECTOR, SEQUENCE, SELECTORSTAR, SEQUENCESTAR, ACTION, CONDITION};
+    // enum ReturnStatus{RUNNING, SUCCESS, FAILURE};
     
     class BT {
         public:
@@ -26,8 +26,7 @@ namespace tree
             //recursive function to build a tree
             void buildTree(int, int, Node*, int);
 
-            ReturnStatus status_;
-            NodeType type_;
+            
 
             //virtual ReturnStatus Tick() = 0;
 

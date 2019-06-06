@@ -14,7 +14,7 @@ namespace tree{
     class SelectorNode : public BT
     {
         public:
-            ReturnStatus Tick(Node*);
+            ReturnStatus Tick();
     };
 }
 
