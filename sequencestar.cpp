@@ -60,8 +60,8 @@ tree::ReturnStatus tree::SequenceStarNode::Tick()
 
             set_status(child_i_status_);
 
-            //this takes care of runnning also
-            return child_i_status_;
+            // //this takes care of runnning also
+            // return child_i_status_;  
         }
         else if (current_child_index_ != N_of_children_ - 1)
         {
@@ -77,10 +77,11 @@ tree::ReturnStatus tree::SequenceStarNode::Tick()
                 current_child_index_ = 0;
             }
             set_status(child_i_status_);
-            return child_i_status_;
+            //return child_i_status_;
         }    
     }
-        
+    //this takes care of runnning also
+    return child_i_status_;    
 }
 
 

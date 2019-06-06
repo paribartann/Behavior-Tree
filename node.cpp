@@ -16,8 +16,13 @@ namespace tree
     } 
 
     Node::Node(){
-        status_ = IDLE;
+        set_status(IDLE);
     }
+
+    Node::~Node(){
+       
+    }
+
 
     Node* newNode(string key) 
     { 

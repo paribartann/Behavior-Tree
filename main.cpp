@@ -20,7 +20,7 @@ int main()
     // cout<<root->child[0]->child[0]->child.size()<<"\n";
     // cout<<root->child[0]->child[1]->child.size()<<"\n";
     
-    st.Tick();
+    //st.Tick();
     //cout<<root->tick()<<endl;
 
     return 0;

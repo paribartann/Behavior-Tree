@@ -45,8 +45,8 @@ tree::ReturnStatus tree::SelectorNode::Tick()
                 // If the  child status is not failure, halt the next children and return the status to your parent.
                 //I think we need to add this logic
             }
-            //this takes care of runnning also
-            return child_i_status_; 
+            
+            
         }
         else
         {
@@ -56,10 +56,10 @@ tree::ReturnStatus tree::SelectorNode::Tick()
                 // If the  child status is failure, and it is the last child to be ticked,
                 // then the sequence has failed.
                 //set_status(BT::FAILURE);
-                return tree::FAILURE;
+                
             }
         }        
     }
-
-
+    //this takes care of runnning also
+    return child_i_status_; 
 }
