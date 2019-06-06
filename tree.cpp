@@ -94,28 +94,7 @@ string tree::BT::getBehavior(int depthIndex)
     return splittedBySpace[depthIndex][1];
 }
 
-string tree::BT::getType(string s)
-{
-    string return_type = "";
-    if (s == "AND")
-    {
-        return_type = "SEQUENCE";
-    }
-    else if (s == "ANDM")
-    {
-        return_type = "SEQUENCESTAR";
-    }
-    else if (s == "ORM")
-    {
-        return_type = "SELECTORSTAR";
-    }
-    else if (s == "OR")
-    {
-        return_type = "SELECTOR";
-    }
 
-    return return_type;
-}
 
 //returns the number of children any behavior has
 int tree::BT::getNumberOfChildren(int depthIndex)

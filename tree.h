@@ -4,8 +4,6 @@
 
 namespace tree
 {
-    // enum NodeType{SELECTOR, SEQUENCE, SELECTORSTAR, SEQUENCESTAR, ACTION, CONDITION};
-    // enum ReturnStatus{RUNNING, SUCCESS, FAILURE};
     
     class BT : public Node{
         public:
@@ -19,7 +17,7 @@ namespace tree
             //int number_of_children(Node*);
             //utility functions
             std::string getBehavior(int);
-            std::string getType(std::string);
+           
             int getNumberOfChildren(int);
             int getDepth(int);
 
@@ -27,7 +25,6 @@ namespace tree
             void buildTree(int, int, Node*, int);
 
             
-
             //virtual ReturnStatus Tick() = 0;
 
             std::vector<Node*>children_node; 
