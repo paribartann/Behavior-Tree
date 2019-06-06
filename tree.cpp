@@ -55,12 +55,8 @@ tree::Node* tree::BT::buildBT(const string& fileName)
     int numberOfChildren_root = 0;
     
     rootValue = splittedBySpace[0][0];          //this will always be a root node according to our file
-    // stringstream input(splittedBySpace[0][1]);
-    // int x = 0;
-    // input >> x;
-    //cout<<x<<endl;
+   
     //Node *nd;
-
     Node *root = newNode(rootValue);            //adding the above to the root of tree
 
     
@@ -76,17 +72,10 @@ tree::Node* tree::BT::buildBT(const string& fileName)
 
 void tree::BT::execute(Node* rootNode, int ticks_in_millisecond)
 {
-    /*while (true)
-    {
-        root->tick()
-    }*/
+   cout<<rootNode->child[2]->get_type()<<"\n";
     
 }
 
-// int BT::number_of_children(Node* root)
-// {
-//     return root->child.size
-// }
 
 //returns the control flow nodes or condition or action associated with the line number
 string tree::BT::getBehavior(int depthIndex)

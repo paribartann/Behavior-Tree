@@ -12,16 +12,7 @@ int main()
     tree::SelectorNode st; 
     tree::Node* root= bt.buildBT("BT_Fig8");
 
-   // cout<<root->key<<endl;
-    //cout<<root->child.size()<<endl;
-    cout<<root->child[2]->get_type()<<"\n";
-    // cout<<root->child[1]->child.size()<<"\n";
-    // cout<<root->child[2]->child.size()<<"\n";
-    // cout<<root->child[0]->child[0]->child.size()<<"\n";
-    // cout<<root->child[0]->child[1]->child.size()<<"\n";
-    
-    //st.Tick();
-    //cout<<root->tick()<<endl;
+    bt.execute(root, 1000);
 
     return 0;
 }
