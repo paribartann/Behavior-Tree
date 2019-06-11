@@ -25,7 +25,7 @@ namespace tree
             void buildTree(int, int, Node*, int);
 
             
-            //virtual ReturnStatus Tick() = 0;
+            ReturnStatus Tick();
 
             std::vector<Node*>children_node; 
             // Children states

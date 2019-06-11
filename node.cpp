@@ -10,10 +10,10 @@ namespace tree
      // Utility function to create a new tree node 
 
 
-    ReturnStatus Node::Tick()
-    {
-        return SUCCESS;
-    } 
+    // ReturnStatus Node::Tick()
+    // {
+    //     return SUCCESS;
+    // } 
 
     Node::Node(){
         set_status(IDLE);
@@ -26,8 +26,8 @@ namespace tree
 
     Node* newNode(string key) 
     { 
-        Node *temp = new Node; 
-        //temp = new Node;
+        Node *temp; //= new Node; 
+        
         temp->key = key; 
         
             if (key == "AND")

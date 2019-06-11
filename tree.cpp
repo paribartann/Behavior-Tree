@@ -83,7 +83,11 @@ string tree::BT::getBehavior(int depthIndex)
     return splittedBySpace[depthIndex][1];
 }
 
-
+tree::ReturnStatus tree::BT::Tick(){
+     
+     //this is just for the sake of doing
+     return tree::SUCCESS;
+}
 
 //returns the number of children any behavior has
 int tree::BT::getNumberOfChildren(int depthIndex)
