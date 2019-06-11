@@ -1,19 +1,17 @@
 #ifndef SEQUENCE_NODE_H
 #define SEQUENCE_NODE_H
 
-//#include "BT_node.h"
-#include "tree.h"
+#include "node.h"
 #include <string>
 #include <vector>
 
-// using namespace tree;
-// using namespace parsed;
 
 namespace tree{
 
-    class SequenceNode : public BT
+    class SequenceNode : public Node
     {
         public:
+            SequenceNode(std::string key, unsigned int);
             ReturnStatus Tick();
     };
 }

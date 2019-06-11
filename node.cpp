@@ -7,57 +7,15 @@ using namespace std;
 
 namespace tree
 {
-     // Utility function to create a new tree node 
-
-
-    // ReturnStatus Node::Tick()
-    // {
-    //     return SUCCESS;
-    // } 
+    
 
     Node::Node(){
-        set_status(IDLE);
+        //set_status(IDLE);
     }
 
     Node::~Node(){
        
     }
-
-
-    Node* newNode(string key) 
-    { 
-        Node *temp; //= new Node; 
-        
-        temp->key = key; 
-        
-            if (key == "AND")
-            {
-                temp->set_type(SEQUENCE);
-            }
-            else if (key == "ANDM")
-            {
-                temp->set_type(SEQUENCESTAR);
-            }
-            else if (key == "ORM")
-            {
-                temp->set_type(SELECTORSTAR);
-            }
-            else if (key == "OR")
-            {
-                temp->set_type(SELECTOR);
-            }
-            else if (key == "t" || key == "tp")
-            {
-                temp->set_type(CONDITION);
-            }
-            else
-            {
-                temp->set_type(ACTION);
-            }
-        
-        return temp; 
-    } 
-    
   
     // Prints the n-ary tree level wise 
     void LevelOrderTraversal(Node* root) 

@@ -9,6 +9,7 @@
 #include <string>
 
 
+
 using namespace std;
 
 
@@ -52,19 +53,43 @@ tree::Node* tree::BT::buildBT(const string& fileName)
     }
 
     string rootValue = "";
-    int numberOfChildren_root = 0;
+    unsigned int numberOfChildren_root = 0;
     
     rootValue = splittedBySpace[0][0];          //this will always be a root node according to our file
-   
-    //Node *nd;
-    Node *root = newNode(rootValue);            //adding the above to the root of tree
+    numberOfChildren_root = getNumberOfChildren(0);
+  
+
+    if (rootValue == "AND")
+    {
+        root = new SequenceNode(rootValue, numberOfChildren_root);   
+    }
+    else if (rootValue == "ANDM")
+    {
+        root = new SequenceStarNode(rootValue, numberOfChildren_root);
+    }
+    else if (rootValue == "ORM")
+    {
+        root = new SelectorStarNode(rootValue, numberOfChildren_root);
+    }
+    else if (rootValue == "OR")
+    {
+        root = new SelectorNode(rootValue, numberOfChildren_root);
+    }
+    else if (rootValue == "t" || rootValue == "tp")
+    {
+        root = new ConditionNode(rootValue);
+    }
+    else
+    {
+        root = new ActionNode(rootValue);
+    }
 
     
     //building a tree (starting from 1 below the root)
     buildTree(1, splittedBySpace.size(), root, 1);
     
     //traversing along the tree and printing it
-    LevelOrderTraversal(root); 
+    //LevelOrderTraversal(root); 
 
     return root;
       
@@ -72,8 +97,7 @@ tree::Node* tree::BT::buildBT(const string& fileName)
 
 void tree::BT::execute(Node* rootNode, int ticks_in_millisecond)
 {
-   cout<<rootNode->child[2]->get_type()<<"\n";
-    
+    rootNode->Tick();
 }
 
 
@@ -90,7 +114,7 @@ tree::ReturnStatus tree::BT::Tick(){
 }
 
 //returns the number of children any behavior has
-int tree::BT::getNumberOfChildren(int depthIndex)
+unsigned int tree::BT::getNumberOfChildren(int depthIndex)
 {
     string val = "";
     if (depthIndex == 0)
@@ -98,7 +122,7 @@ int tree::BT::getNumberOfChildren(int depthIndex)
     else
         val = splittedBySpace[depthIndex][2];
     stringstream input(val);
-    int x = 0;
+    unsigned int x = 0;
     input >> x;
     return x;
     
@@ -113,7 +137,7 @@ int tree::BT::getDepth(int depthIndex)
 
 
 //this is a recursive function which takes the starting rootLine , last node of the tree, root of tree or subtree, and it's depth 
-void tree::BT::buildTree(int rootStart, int rootEnd, Node* root, int depth)
+void tree::BT::buildTree(int rootStart, int rootEnd, Node* rootNode, int depth)
 {
    // Node * nd;
     int ithChild = -1;                          //denotes the child of each level (such as index [0] )
@@ -130,15 +154,40 @@ void tree::BT::buildTree(int rootStart, int rootEnd, Node* root, int depth)
             continue;                                                           //parsed, if so continue
 
         //cout<<getNumberOfChildren(i)<<endl;
-        (root->child).push_back(newNode( getBehavior(rootStart+count)));           //root will vary as per the recursive function
+    if (getBehavior(i) == "AND")
+    {
+        rootC = new SequenceNode("AND", getNumberOfChildren(i));   
+    }
+    else if (getBehavior(i) == "ANDM")
+    {
+        rootC = new SequenceStarNode("ANDM", getNumberOfChildren(i));
+    }
+    else if (getBehavior(i) == "ORM")
+    {
+        rootC = new SelectorStarNode("ORM", getNumberOfChildren(i));
+    }
+    else if (getBehavior(i) == "OR")
+    {
+        rootC = new SelectorNode("OR", getNumberOfChildren(i));
+    }
+    else if (getBehavior(i) == "t" || getBehavior(i) == "tp")
+    {
+        rootC = new ConditionNode(getBehavior(i));
+    }
+    else
+    {
+        rootC = new ActionNode(getBehavior(i));
+    }
+
+        (rootNode->child).push_back(rootC);           //root will vary as per the recursive function
         alreadyParsed.push_back( rootStart + count);                //put the index of the used behavior in alreadyParsed vector 
         ithChild++;                                                 //denotes the child number of any parents
-        int num_of_children = getNumberOfChildren(i);   
+        unsigned int num_of_children = getNumberOfChildren(i);   
    
         if (num_of_children > 0)
         {
             //buildTree(rootStart+count+1, splittedBySpace.size(), root->child[ithChild], depth+1);
-            buildTree(rootStart+count+1, rootStart+count+1+num_of_children, root->child[ithChild], depth+1);
+            buildTree(rootStart+count+1, rootStart+count+1+num_of_children, rootNode->child[ithChild], depth+1);
         }      
     }
 }

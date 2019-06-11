@@ -1,5 +1,5 @@
-#ifndef ACTION_NODE_H
-#define ACTION_NODE_H
+#ifndef CONDITION_NODE_H
+#define CONDITION_NODE_H
 
 #include "node.h"
 #include <string>
@@ -8,10 +8,10 @@
 
 namespace tree{
 
-    class ActionNode : public Node
+    class ConditionNode : public Node
     {
         public:
-            ActionNode(std::string key);
+            ConditionNode(std::string key);
             ReturnStatus Tick();
     };
 }
