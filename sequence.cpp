@@ -31,26 +31,22 @@ tree::ReturnStatus tree::SequenceNode::Tick()
         }
             
     
-        if (child_i_status_ != tree::SUCCESS)
+        if (child_i_status_ == tree::SUCCESS)
         {
-            if(child_i_status_ == tree::FAILURE)
+             set_status(child_i_status_);
+            if (i != (get_num_children() - 1))
             {
-                child[i]->set_status(tree::IDLE); //after failure, set it to normal or not used
+                std::cout<<"do nothing"<<std::endl;
             }
-            
-            set_status(child_i_status_);
-            break;
+            else
+            {
+                return tree::SUCCESS;
+            }
         }
         else
         {
-            //if the child returned success
-            if (i == (get_num_children() - 1))
-            {
-                // If the  child status is failure, and it is the last child to be ticked,
-                // then the sequence has failed.
-                set_status(tree::SUCCESS);
-            }
-        }        
+            return child_i_status_;
+        }      
     }
     //this takes care of runnning also
     return child_i_status_; 
