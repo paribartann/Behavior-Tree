@@ -26,9 +26,6 @@ tree::ReturnStatus tree::SelectorStarNode::Tick()
              
                 child_i_status_ = child[current_child_index_]->Tick();
 
-                std::cout<<"Selector's child status is"<<child_i_status_<<std::endl;
-                //perform certain action - have to fix or map each name to its correspondent action
-            //}
         }
        
         else
@@ -37,7 +34,6 @@ tree::ReturnStatus tree::SelectorStarNode::Tick()
 
             child_i_status_ = child[current_child_index_]->Tick();
 
-             std::cout<<"Selector's child status is"<<child_i_status_<<std::endl;
         }
 
         if (child_i_status_ == tree::FAILURE)
