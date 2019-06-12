@@ -86,10 +86,9 @@ tree::Node* tree::BT::buildBT(const string& fileName)
     buildTree(1, splittedBySpace.size(), root, 1);
     
     //traversing along the tree and printing it
-    LevelOrderTraversal(root); 
+    //LevelOrderTraversal(root); 
 
     return root;
-      
 }
 
 void tree::BT::execute(Node* rootNode, int ticks_in_millisecond)
@@ -150,31 +149,31 @@ void tree::BT::buildTree(int rootStart, int rootEnd, Node* rootNode, int depth)
         if (find(alreadyParsed.begin(), alreadyParsed.end(), rootStart+count) != alreadyParsed.end()) //checking if the following line has already been
             continue;                                                           //parsed, if so continue
 
-        //cout<<getNumberOfChildren(i)<<endl;
-    if (getBehavior(i) == "AND")
-    {
-        rootC = new SequenceNode("AND", getNumberOfChildren(i));   
-    }
-    else if (getBehavior(i) == "ANDM")
-    {
-        rootC = new SequenceStarNode("ANDM", getNumberOfChildren(i));
-    }
-    else if (getBehavior(i) == "ORM")
-    {
-        rootC = new SelectorStarNode("ORM", getNumberOfChildren(i));
-    }
-    else if (getBehavior(i) == "OR")
-    {
-        rootC = new SelectorNode("OR", getNumberOfChildren(i));
-    }
-    else if (getBehavior(i) == "t" || getBehavior(i) == "tp")
-    {
-        rootC = new ConditionNode(getBehavior(i));
-    }
-    else
-    {
-        rootC = new ActionNode(getBehavior(i));
-    }
+ 
+        if (getBehavior(i) == "AND")
+        {
+            rootC = new SequenceNode("AND", getNumberOfChildren(i));   
+        }
+        else if (getBehavior(i) == "ANDM")
+        {
+            rootC = new SequenceStarNode("ANDM", getNumberOfChildren(i));
+        }
+        else if (getBehavior(i) == "ORM")
+        {
+            rootC = new SelectorStarNode("ORM", getNumberOfChildren(i));
+        }
+        else if (getBehavior(i) == "OR")
+        {
+            rootC = new SelectorNode("OR", getNumberOfChildren(i));
+        }
+        else if (getBehavior(i) == "t" || getBehavior(i) == "tp")
+        {
+            rootC = new ConditionNode(getBehavior(i));
+        }
+        else
+        {
+            rootC = new ActionNode(getBehavior(i));
+        }
 
         (rootNode->child).push_back(rootC);           //root will vary as per the recursive function
         alreadyParsed.push_back( rootStart + count);                //put the index of the used behavior in alreadyParsed vector 

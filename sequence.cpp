@@ -9,7 +9,6 @@ tree::SequenceNode::SequenceNode(std::string key, unsigned int num)
     //SelectorNode* temp = new SelectorNode; 
     this->key = key; 
     set_type(SEQUENCE);
-    set_status(IDLE);
     set_num_children(num);
 }
 

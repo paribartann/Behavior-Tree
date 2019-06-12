@@ -9,8 +9,6 @@ tree::ConditionNode::ConditionNode(std::string key)
     //SelectorNode* temp = new SelectorNode; 
     this->key = key; 
     set_type(CONDITION);
-    
-    set_status(IDLE);
 }
 
 

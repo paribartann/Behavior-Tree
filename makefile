@@ -14,7 +14,7 @@ selectorstar.o: selectorstar.cpp selectorstar.h
 sequence.o: sequence.cpp sequence.h
 sequencestar.o: sequencestar.cpp sequencestar.h
 
-TARGET = bt tree.o node.o action.o condition.o sequence.o sequencestar.o selector.o selectorstar.o
+TARGET = bt main.o tree.o node.o action.o condition.o sequence.o sequencestar.o selector.o selectorstar.o
 
 all: $(TARGET)
 

@@ -6,11 +6,9 @@
 
 tree::SelectorStarNode::SelectorStarNode(std::string key, unsigned int num)
 {
-    //SelectorNode* temp = new SelectorNode; 
     this->key = key; 
     current_child_index_ = 0;
     set_type(SELECTORSTAR);
-    set_status(IDLE);
     set_num_children(num);
 }
 

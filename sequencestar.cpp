@@ -8,9 +8,7 @@ tree::SequenceStarNode::SequenceStarNode(std::string key, unsigned int num)
     current_child_index_ = 0;
     this->key = key; 
     set_type(SEQUENCESTAR);
-    set_status(IDLE);
     set_num_children(num);
-
 }
 
 tree::ReturnStatus tree::SequenceStarNode::Tick()

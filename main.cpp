@@ -7,7 +7,7 @@ int main()
 {
     tree::BT bt;
 
-    tree::Node* root = bt.buildBT("BT_Fig8");
+    tree::Node* root = bt.buildBT("./bt_files/BT_Fig8");
 
     bt.execute(root, 1000);
 
