@@ -10,28 +10,32 @@ using namespace tree;
 
 
 int pseudoDomain::gaCount = 5;
-int pseudoDomain::gbCount = 4;
-int pseudoDomain::gcCount = 3;
-int pseudoDomain::dcCount = 2;
-int pseudoDomain::charge = 100;
-ReturnStatus pseudoDomain::not_carryingPackage = SUCCESS;
+int pseudoDomain::gbCount = 4; 
+int pseudoDomain::gcCount = 3; 
+int pseudoDomain::dcCount = 0; 
+int pseudoDomain::charge = 50; 
+ReturnStatus pseudoDomain::not_carryingPackage = SUCCESS; 
+ReturnStatus pseudoDomain::status_GA;
+ReturnStatus pseudoDomain::status_GB;
+ReturnStatus pseudoDomain::status_GC;
+ReturnStatus pseudoDomain::status_DC;
 
 pseudoDomain::pseudoDomain()
 {
-    //not_carryingPackage = tree::SUCCESS;
+
 }
 
 tree::ReturnStatus pseudoDomain::not_carrying_packageTP()
 {
-    return not_carryingPackage;
+    return pseudoDomain::not_carryingPackage;
 }
 
 tree::ReturnStatus pseudoDomain::battery_low()
 {
     if ( charge < 25 )
-        return tree::SUCCESS;
+        return SUCCESS;
     else
-        return tree::FAILURE;
+        return FAILURE;
 }
 
 tree::ReturnStatus pseudoDomain::call_function(string function_name)
@@ -66,83 +70,86 @@ tree::ReturnStatus pseudoDomain::call_condition(string function_name)
 
 tree::ReturnStatus pseudoDomain::GA()
 {
+    cout<<"GA count: "<<pseudoDomain::gaCount<<endl;
     pseudoDomain::charge --;
-    if (status_GA != RUNNING)
+    if (pseudoDomain::status_GA != RUNNING)
         pseudoDomain::gaCount = 5;
     pseudoDomain::gaCount--;
     if(pseudoDomain::gaCount > 0)
     {
         cout<<"GA still running\n";
-        status_GA = RUNNING;
+        pseudoDomain::status_GA = RUNNING;
     }
     else {       
         cout<<"GA returned success and package has now been picked\n\n";
-        not_carryingPackage = FAILURE; 
-        status_GA = SUCCESS;
+        pseudoDomain::not_carryingPackage = FAILURE; 
+        pseudoDomain::status_GA = SUCCESS;
     }
-    return status_GA;
+    return pseudoDomain::status_GA;
 }
 
 tree::ReturnStatus pseudoDomain::GB()
 {
+    cout<<"GB count: "<<pseudoDomain::gbCount<<endl;
     pseudoDomain::charge --;
-    if (status_GB != RUNNING)
+    if (pseudoDomain::status_GB != RUNNING)
         pseudoDomain::gbCount = 4;
     pseudoDomain::gbCount--;
     if(pseudoDomain::gbCount > 0)
     {
         cout<<"GB still running\n";
-        status_GB = RUNNING;
+        pseudoDomain::status_GB = RUNNING;
     }
     else{
         cout<<"GB returned success and the package has now been dropped\n\n";
-        not_carryingPackage = SUCCESS; 
-        status_GB = SUCCESS;
+        pseudoDomain::not_carryingPackage = SUCCESS; 
+        pseudoDomain::status_GB = SUCCESS;
     }
-    return status_GB;
+    return pseudoDomain::status_GB;
 }
 
 
 tree::ReturnStatus pseudoDomain::GC()
 {
+    cout<<"GC count: "<<pseudoDomain::gcCount<<endl;
     pseudoDomain::gaCount = 5;
     pseudoDomain::gbCount = 4;
     pseudoDomain::charge --;
-    if (status_GC != RUNNING)
+    if (pseudoDomain::status_GC != RUNNING)
         pseudoDomain::gcCount = 3;
     pseudoDomain::gcCount--;
     if(pseudoDomain::gcCount > 0)
     {
         cout<<"GC still running\n";
-        status_GC = RUNNING;
+        pseudoDomain::status_GC = RUNNING;
     }
     else
     {
         cout<<"GC returned success and now going to DC\n\n";
-        status_GC = SUCCESS;   
+        pseudoDomain::status_GC = SUCCESS;   
     }
-    return status_GC;
+    return pseudoDomain::status_GC;
 }
 
 tree::ReturnStatus pseudoDomain::DC()
 {
-    
+    cout<<"DC count: "<<pseudoDomain::dcCount<<endl;
     pseudoDomain::charge --;
     sleep(2);
-    if (status_DC != RUNNING)
+    if (pseudoDomain::status_DC != RUNNING)
         pseudoDomain::dcCount = 0;
     pseudoDomain::dcCount--;
     if(pseudoDomain::dcCount > 0)
     {
         cout<<"DC still running\n";
-        status_DC = RUNNING;
+        pseudoDomain::status_DC = RUNNING;
     }
     else
     {
         pseudoDomain::charge = 100;
-        status_DC = SUCCESS;
+        pseudoDomain::status_DC = SUCCESS;
     }
-    return status_DC;
+    return pseudoDomain::status_DC;
 }
 
 

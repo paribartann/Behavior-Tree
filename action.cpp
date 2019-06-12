@@ -1,4 +1,5 @@
 #include "action.h"
+#include "pseudoDomain.h"
 #include <iostream>
 #include <string>
 
@@ -13,29 +14,10 @@ tree::ActionNode::ActionNode(std::string key)
 
 tree::ReturnStatus tree::ActionNode::Tick()
 {
-    std::cout<<"Action Node"<<std::endl;
+    std::cout<<"Action Node Ticked"<<std::endl;
 
-    if (this->key == "GC")
-    {
-        std::cout<<"Performing action GC"<<std::endl;
-        return tree::SUCCESS; 
+    tree::pseudoDomain pd;
 
-    }
-    else if (this->key == "DC")
-    {
-        std::cout<<"Performing action DC"<<std::endl;
-        return tree::SUCCESS; 
-    }
-    else if (this->key == "GA")
-    {
-        std::cout<<"Performing action GA"<<std::endl;
-        return tree::FAILURE; 
-    }
-    else 
-    {
-        std::cout<<"Performing action GB"<<std::endl;
-        return tree::SUCCESS; 
-    }
+    return pd.call_function(this->key);
 
-    //return tree::SUCCESS; 
 }

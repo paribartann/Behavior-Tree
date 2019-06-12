@@ -25,10 +25,11 @@ tree::ReturnStatus tree::SelectorNode::Tick()
         else
         {
             child_i_status_ = child[i]->Tick();
+            std::cout<<"It returned "<<child_i_status_<<std::endl;
         }
 
         //now checking the returned status of the children nodes    
-        if (child_i_status_ == tree::FAILURE)
+        if (child_i_status_ == tree::FAILURE)// || child_i_status_ == tree::RUNNING)
         {
              set_status(child_i_status_);
             if (i == (get_num_children() - 1))

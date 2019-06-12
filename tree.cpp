@@ -93,9 +93,14 @@ tree::Node* tree::BT::buildBT(const string& fileName)
 
 void tree::BT::execute(Node* rootNode, int ticks_in_millisecond)
 {
-    rootNode->Tick();
+    int index = 51;
+    while(index > 0)
+    {
+        rootNode->Tick();
+        index--;
+        cout<<endl;
+    }
 }
-
 
 //returns the control flow nodes or condition or action associated with the line number
 string tree::BT::getBehavior(int depthIndex)

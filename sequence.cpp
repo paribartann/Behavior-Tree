@@ -29,7 +29,7 @@ tree::ReturnStatus tree::SequenceNode::Tick()
         }
             
         //now checking the returned status of the children nodes
-        if (child_i_status_ == tree::SUCCESS)
+        if (child_i_status_ == tree::SUCCESS)// || child_i_status_ == tree::RUNNING)
         {
              set_status(child_i_status_);
             if (i == (get_num_children() - 1))

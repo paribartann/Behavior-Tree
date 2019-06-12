@@ -22,9 +22,8 @@ namespace tree{
         static int gaCount, gbCount, gcCount, dcCount, charge;
         
         static ReturnStatus not_carryingPackage;
-        //int charge;
         
-        ReturnStatus status_GA, status_GB, status_GC, status_DC;
+        static ReturnStatus status_GA, status_GB, status_GC, status_DC;
   };
 }
 
