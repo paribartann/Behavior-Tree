@@ -16,43 +16,35 @@ tree::SelectorNode::SelectorNode(std::string key, unsigned int num)
 
 tree::ReturnStatus tree::SelectorNode::Tick()
 {
-    
     std::cout<<"Selector Node ticked"<<std::endl;
-
     for (unsigned int i = 0; i < get_num_children(); i++)
     {
-        
-        if (child[i]->get_type() == tree::ACTION)
+        if (child[i]->get_type() == tree::ACTION || child[i]->get_type() == tree::CONDITION)
         {
-
-                std::cout<<"Ticking Action"<<std::endl;
                 child_i_status_ = child[i]->Tick();
-            
         }
         else
         {
             child_i_status_ = child[i]->Tick();
         }
-            
-    
+
+        //now checking the returned status of the children nodes    
         if (child_i_status_ == tree::FAILURE)
         {
              set_status(child_i_status_);
-            if (i != (get_num_children() - 1))
+            if (i == (get_num_children() - 1))
             {
-                std::cout<<"do nothing"<<std::endl;
+                return tree::FAILURE;
             }
             else
             {
-                return tree::FAILURE;
+                std::cout<<"One child returned failure. Going for other one"<<std::endl;
             }
         }
         else
         {
             return child_i_status_;
         }
-     
     }
-    //this takes care of runnning also
     return child_i_status_; 
 }

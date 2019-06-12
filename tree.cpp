@@ -8,8 +8,6 @@
 #include <sstream>
 #include <string>
 
-
-
 using namespace std;
 
 
@@ -83,13 +81,12 @@ tree::Node* tree::BT::buildBT(const string& fileName)
     {
         root = new ActionNode(rootValue);
     }
-
     
     //building a tree (starting from 1 below the root)
     buildTree(1, splittedBySpace.size(), root, 1);
     
     //traversing along the tree and printing it
-    //LevelOrderTraversal(root); 
+    LevelOrderTraversal(root); 
 
     return root;
       

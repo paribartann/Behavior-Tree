@@ -17,5 +17,15 @@ tree::ConditionNode::ConditionNode(std::string key)
 tree::ReturnStatus tree::ConditionNode::Tick()
 {
     std::cout<<"Condition Node"<<std::endl;
-    return tree::SUCCESS; 
+     if (this->key == "t")
+    {
+        std::cout<<"Checking condition t()"<<std::endl;
+        return tree::FAILURE; 
+    }
+    else
+    {
+        std::cout<<"Checking condition tp()"<<std::endl;
+         return tree::SUCCESS; 
+    }
+    
 }

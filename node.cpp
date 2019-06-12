@@ -7,14 +7,11 @@ using namespace std;
 
 namespace tree
 {
-    
 
     Node::Node(){
-        //set_status(IDLE);
     }
 
     Node::~Node(){
-       
     }
   
     // Prints the n-ary tree level wise 

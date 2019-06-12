@@ -15,28 +15,20 @@ tree::SequenceStarNode::SequenceStarNode(std::string key, unsigned int num)
 
 tree::ReturnStatus tree::SequenceStarNode::Tick()
 {
-    
-    //std::cout<<root->child.size()<<std::endl;
     std::cout<<"SequenceStar Node ticked"<<std::endl;
-
     while (current_child_index_ < get_num_children())
     {
-        if (child[current_child_index_]->get_type() == tree::ACTION)
+        if (child[current_child_index_]->get_type() == tree::ACTION || child[current_child_index_]->get_type() == tree::CONDITION)
         {
-            
-                std::cout<<"Ticking Action"<<std::endl;
                 child_i_status_ = child[current_child_index_]->Tick();
-
         }
-       
         else
         {
-            //this will take care of condition nodes and control nodes
-            
+            //this will take care of control nodes
             child_i_status_ = child[current_child_index_]->Tick();
-
         }
 
+        //now checking the returned status of the children nodes
         if (child_i_status_ == tree::SUCCESS)
         {
              set_status(child_i_status_);
@@ -53,9 +45,8 @@ tree::ReturnStatus tree::SequenceStarNode::Tick()
         {
             return child_i_status_;
         }
-        
-    }
-    return child_i_status_;    
+    }   
+    return child_i_status_;
 }
 
 

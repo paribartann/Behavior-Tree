@@ -18,23 +18,28 @@ tree::ReturnStatus tree::ActionNode::Tick()
     // set_status(tree::RUNNING);
 
     std::cout<<"Action Node"<<std::endl;
-    
+
     if (this->key == "GC")
     {
-        std::cout<<"GC"<<std::endl;
+        std::cout<<"Performing action GC"<<std::endl;
+        return tree::SUCCESS; 
+
     }
     else if (this->key == "DC")
     {
-        std::cout<<"DC"<<std::endl;
+        std::cout<<"Performing action DC"<<std::endl;
+        return tree::SUCCESS; 
     }
     else if (this->key == "GA")
     {
-        std::cout<<"GA"<<std::endl;
+        std::cout<<"Performing action GA"<<std::endl;
+        return tree::FAILURE; 
     }
     else 
     {
-        std::cout<<"GB"<<std::endl;
+        std::cout<<"Performing action GB"<<std::endl;
+        return tree::SUCCESS; 
     }
 
-    return tree::SUCCESS; 
+    //return tree::SUCCESS; 
 }

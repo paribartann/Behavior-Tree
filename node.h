@@ -37,14 +37,7 @@ namespace tree{
 
 
             virtual ReturnStatus Tick() = 0;
-
-            std::vector<Node*>children_node; 
-            // Children states
-            std::vector<ReturnStatus> children_states_;
-
-            // Vector size
-           
-            
+         
             // child i status. Used to rout the ticks
             ReturnStatus child_i_status_;
             // ******************************** //

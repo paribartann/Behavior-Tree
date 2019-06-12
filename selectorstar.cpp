@@ -21,21 +21,17 @@ tree::ReturnStatus tree::SelectorStarNode::Tick()
 
     while (current_child_index_ < get_num_children())
     {
-        if (child[current_child_index_]->get_type() == tree::ACTION)
+        if (child[current_child_index_]->get_type() == tree::ACTION || child[current_child_index_]->get_type() == tree::CONDITION)
         {
-             
                 child_i_status_ = child[current_child_index_]->Tick();
-
         }
-       
         else
         {
-            //this will take care of condition nodes and control nodes
-
+            //this will take care of control nodes
             child_i_status_ = child[current_child_index_]->Tick();
-
         }
 
+       //now checking the returned status of the children nodes
         if (child_i_status_ == tree::FAILURE)
         {
              set_status(child_i_status_);
@@ -52,11 +48,7 @@ tree::ReturnStatus tree::SelectorStarNode::Tick()
         {
             return child_i_status_;
         }
-            
-        
-        
     }
-    //this takes care of runnning also
     return child_i_status_;
 }
 
