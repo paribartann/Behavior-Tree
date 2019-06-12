@@ -4,4 +4,7 @@
 
 To Run:
 
-g++ main.cpp node.cpp tree.cpp action.cpp condition.cpp selector.cpp selectorstar.cpp sequence.cpp sequencestar.cpp
+1. git clone this repository
+2. cd path/to/the/folder
+3. make
+4. ./bt
