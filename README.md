@@ -11,6 +11,7 @@ To Run:
 
 1. git clone this repository
 2. cd path/to/the/folder
-3. make
-4. cd bin
-5. ./main
+3. mkdir bin
+4. make
+5. cd bin
+6. ./main
