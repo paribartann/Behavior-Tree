@@ -51,7 +51,7 @@ tree::Node* tree::BT::buildBT(const string& fileName)
        result.push_back(item);
     }
    
-    for (int i = 0; i < result.size(); i++)
+    for (unsigned long i = 0; i < result.size(); i++)
     {
         stringstream input(result[i]);
         vector<string> splitWord;
@@ -108,6 +108,7 @@ tree::Node* tree::BT::buildBT(const string& fileName)
 
 void tree::BT::execute(Node* rootNode, int ticks_in_millisecond)
 {
+    ticks_in_millisecond = 0;
     int index = 51;
     while(index > 0)
     {

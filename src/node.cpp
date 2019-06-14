@@ -54,7 +54,7 @@ namespace tree
                 cout << p->key << " "; 
     
                 // Enqueue all children of the dequeued item 
-                for (int i=0; i<p->child.size(); i++) 
+                for (unsigned long i=0; i < p->child.size(); i++) 
                     q.push(p->child[i]); 
                 n--; 
             } 
