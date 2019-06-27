@@ -1,6 +1,6 @@
 # Behavior-Tree
 
-This program has implemented a domain-independent Behavior Tree model, and executes a tree for a dummy environment. 
+This program has implemented a domain-independent Behavior Tree model, and executes a tree for a dummy environment for trial purpose.
 The dummy environment is presented below:
 
 ![Decanonicalized BT](./images/BT.png)
