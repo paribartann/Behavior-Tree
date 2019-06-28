@@ -13,5 +13,8 @@ To Run:
 2. cd path/to/the/folder
 3. mkdir bin
 4. make
-5. cd bin
-6. ./main
+5. ./bin/main files/BT_Fig8
+
+
+(Have to give the address to the BT text relative to your position)
+

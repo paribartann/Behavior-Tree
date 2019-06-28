@@ -19,11 +19,14 @@
 
 using namespace std;
 
-int main()
+int main(int argc, char* argv[])
 {
     tree::BT bt;
 
-    tree::Node* root = bt.buildBT("../files/BT_Fig8");
+    const char* fileName = argv[1];
+    cout<<fileName<<endl;
+
+    tree::Node* root = bt.buildBT(fileName);
 
     bt.execute(root, 1000);
 
